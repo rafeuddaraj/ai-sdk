@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minimal Chat UI</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind config -->
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#000",
+            },
+            boxShadow: {
+              soft: "0 1px 0 rgba(255,255,255,0.04), 0 12px 28px rgba(0,0,0,0.5)",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="dark bg-zinc-950 text-zinc-100">
+    <main class="mx-auto flex min-h-screen max-w-3xl flex-col px-4 py-6">
+      <!-- =========================================================
+        CHAT WRAPPER CARD
+      ========================================================== -->
+      <section class="flex h-[calc(100vh-48px)] flex-col rounded-3xl border border-white/10 bg-zinc-950 shadow-soft">
+        <!-- =========================================================
+          MESSAGES AREA (scrollable)
+        ========================================================== -->
+        <div class="flex-1 overflow-y-auto px-5 py-5">
+          <div class="space-y-3">
+            <!-- =======================
+              ASSISTANT MESSAGE (left)
+              - Change text as needed
+            ======================== -->
+            <div class="flex justify-start">
+              <div class="max-w-[85%] rounded-2xl bg-white/5 px-4 py-3 text-sm leading-relaxed text-zinc-100 ring-1 ring-white/10">
+                Hi! How can I assist you today?
+              </div>
+            </div>
+
+            <!-- =======================
+              USER MESSAGE (right)
+              - Primary black bubble
+            ======================== -->
+            <div class="flex justify-end">
+              <div class="max-w-[85%] rounded-2xl bg-primary px-4 py-3 text-sm leading-relaxed text-white ring-1 ring-white/10">
+                What is LLM?
+              </div>
+            </div>
+
+            <!-- =======================
+              ASSISTANT MESSAGE (left)
+            ======================== -->
+            <div class="flex justify-start">
+              <div class="max-w-[85%] rounded-2xl bg-white/5 px-4 py-3 text-sm leading-relaxed text-zinc-100 ring-1 ring-white/10">
+                LLM stands for Large Language Model, which is a type of artificial intelligence model designed to understand and generate human-like text based on vast amounts of data.
+              </div>
+            </div>
+
+            <!-- =========================================================
+              OPTIONAL: LOADING PLACEHOLDER
+            ========================================================== -->
+            <div class="pt-2 space-y-2">
+              <div class="flex justify-start">
+                <div class="h-10 w-[52%] animate-pulse rounded-2xl bg-white/5 ring-1 ring-white/10"></div>
+              </div>
+              <div class="flex justify-start">
+                <div class="h-10 w-[36%] animate-pulse rounded-2xl bg-white/5 ring-1 ring-white/10"></div>
+              </div>
+            </div>
+
+            <!-- =========================================================
+              OPTIONAL: ERROR MESSAGE
+            ========================================================== -->
+            <div class="rounded-2xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-100">
+              <div class="font-semibold text-red-100">Request failed</div>
+              <div class="mt-1 text-xs text-red-100/80">
+                API route error. Check your key / server logs.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- =========================================================
+          COMPOSER AREA (bottom)
+          - Contains: File input + Textarea + Buttons
+        ========================================================== -->
+        <div class="border-t border-white/10 p-4">
+          <!-- =======================
+            FILE INPUT (UI only)
+          ======================== -->
+          <div class="mb-3">
+            <label class="block text-xs text-zinc-400">Attach file</label>
+            <div class="mt-2 flex items-center gap-3">
+              <input
+                type="file"
+                class="block w-full cursor-pointer rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-zinc-200 file:mr-3 file:rounded-xl file:border-0 file:bg-white/10 file:px-3 file:py-2 file:text-sm file:font-medium file:text-zinc-100 hover:file:bg-white/15"
+              />
+              <!-- Optional tiny helper badge (remove if you want) -->
+              <span class="hidden sm:inline-flex rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-zinc-300">
+                image/pdf/txt
+              </span>
+            </div>
+          </div>
+
+          <!-- =======================
+            TEXT COMPOSER
+            - Textarea + Actions
+          ======================== -->
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-3">
+            <!-- Textarea -->
+            <textarea
+              rows="2"
+              placeholder="Write your prompt…"
+              class="w-full resize-none rounded-xl bg-transparent px-2 py-2 text-sm text-zinc-100 placeholder:text-zinc-400 outline-none"
+            ></textarea>
+
+            <!-- Action row -->
+            <div class="mt-3 flex items-center justify-between gap-3">
+              <!-- Helper text -->
+              <div class="text-xs text-zinc-400">Enter to send • Shift+Enter for newline</div>
+
+              <!-- Buttons (UI only) -->
+              <div class="flex items-center gap-2">
+                <!-- Secondary button -->
+                <button
+                  class="h-10 rounded-xl bg-white/10 px-4 text-sm font-medium text-zinc-100 hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/10"
+                >
+                  Clear
+                </button>
+
+                <!-- Primary button -->
+                <button
+                  class="h-10 rounded-xl bg-primary px-4 text-sm font-medium text-white ring-1 ring-white/10 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-white/10"
+                >
+                  Send
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
